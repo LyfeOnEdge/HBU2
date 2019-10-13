@@ -1,0 +1,12 @@
+/cache/*
+/downloads/*
+*.pyc
+docu/python_setup_config.PNG
+modules/setting_handler.py
+settings.ini
+/scripts/oauth
+/scripts/downloads/*
+scripts/repos.json
+scripts/repos_old.json
+build.zip
+tools/*
