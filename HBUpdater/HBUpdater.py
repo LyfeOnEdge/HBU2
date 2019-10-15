@@ -492,7 +492,7 @@ class HBUpdater_handler(object):
         return ver
 
     #matching the pattern or none found
-    def findasset(self, pattern, assets):
+    def findasset(self, pattern, assets, silent = False):
         if not pattern:
             print("No pattern specified")
             return
@@ -510,7 +510,8 @@ class HBUpdater_handler(object):
             for firstpartpattern in pattern[0]:
                 if firstpartpattern.lower() in assetwithoutfiletype.lower():
                     if assetname.endswith(pattern[1].lower()):
-                        print("found asset: {}".format(assetname))
+                        if not silent:
+                            print("found asset: {}".format(assetname))
                         downloadlink = asseturl
                         break
         if downloadlink == None:

@@ -45,16 +45,6 @@ else:
 
 #Async threader tool for getting downloads and other functions asyncronously
 threader = asyncThreader()
-#Download the appstore json, uses etagging to check if it needs an update to minimize bandwidth
-print("Getting updated HBUpdater repo file")
-# packages_json = getJson("HBUpdater_json",url)
-packages_json = "repos.json"
-#Parse the json into categories
-repo_parser = parser()
-repo_parser.blacklist_categories(["payloads"])
-threader.do_async(repo_parser.load, [packages_json], priority = "high")
-#Shared tool for installing and managing hbas apps via the switchbru site on the sd card
-store_handler = HBUpdater_handler("SWITCH")
 
 toolsfolder = os.path.join(sys.path[0], "tools")
 if not os.path.isdir(toolsfolder):
@@ -63,10 +53,25 @@ if not os.path.isdir(toolsfolder):
 #Tool to manage local packages (downloaded payloads, etc)
 local_packages_handler = HBUpdater_handler("GENERIC")
 local_packages_handler.set_path(toolsfolder, silent = True)
-
 #Init tracking file for local packages as needed
 if not local_packages_handler.check_if_get_init():
 	local_packages_handler.init_get()
+
+print("Getting updated HBUpdater repo file")
+repos_github_api = getJson("repos_api","https://api.github.com/repos/LyfeOnEdge/HBUpdater_API/releases")
+with open(repos_github_api, encoding = "utf-8") as package_repos:
+	repo = json.load(package_repos)
+	assets = repo[0]["assets"]
+#Borrow HBUpdater findasset function 
+repo_remote = local_packages_handler.findasset([["repos"], "json"], assets, silent = True)
+packages_json = getJson("repos",repo_remote)
+
+#Parse the json into categories
+repo_parser = parser()
+repo_parser.blacklist_categories(["payloads"])
+threader.do_async(repo_parser.load, [packages_json], priority = "high")
+#Shared tool for installing and managing hbas apps via the switchbru site on the sd card
+store_handler = HBUpdater_handler("SWITCH")
 
 image_sharer = icon_dict()
 

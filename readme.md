@@ -1,7 +1,3 @@
-This is a temporary repo while I refactor HBUpdater with a much better gui.
-sudo apt-get install python3-pil python3-pil.imagetk
-
-
 # HBUpdater
 ![](https://imgur.com/PeVlbuv.png)
 
