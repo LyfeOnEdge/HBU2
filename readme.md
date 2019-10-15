@@ -6,6 +6,9 @@
 # About
 HBUpdater is a one-stop-shop for managing and updating your Nintendo Switch Homebrew.
 
+# Backend
+Currently the [backend](https://github.com/LyfeOnEdge/HBUpdater_API) runs every 30 minutes to keep the repos file up to date. The repo json can be found here: [repos](https://github.com/LyfeOnEdge/HBUpdater_API/releases)
+
 # Notes
   - Downloads packages directly from github
   - Easily install lots of popular Homebrew
