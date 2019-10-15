@@ -23,7 +23,8 @@ non_relative_folders = {
     "downloads",
     "cache",
     "scripts",
-    "tools"
+    "tools",
+    "img"
 } 
 
 

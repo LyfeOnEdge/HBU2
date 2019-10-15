@@ -6,7 +6,7 @@ import style
 
 class progressFrame(tk.Frame):
     def __init__(self, frame):
-        tk.Frame.__init__(self,frame,background=w)
+        tk.Frame.__init__(self,frame,background=color_1)
         self.framework = frame
         self.progress = None
         self.progress_text = tk.StringVar()
@@ -16,16 +16,16 @@ class progressFrame(tk.Frame):
         self.display_value = 0
 
         self.progresstitle = tk.Label(self,
-            background = w,
+            background = color_1,
             highlightthickness=0,
             anchor="center",
             font=hugeboldtext,
-            foreground= b,
+            foreground= w,
             textvariable = self.title,
-            ).place(relwidth = 1, height = progressbarheight, width = -2*offset, rely = 0.25, y = - (2 * progressbarheight + 2 * offset))
+            ).place(relwidth = 1, relheight = 0.25, width = -2*offset, rely = 0.25, y = - (2 * progressbarheight + 2 * offset))
 
         self.progbartext = tk.Label(self,
-            background = w,
+            background = color_1,
             highlightthickness=0,
             anchor="center",
             font=largeboldtext,
