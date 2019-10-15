@@ -72,7 +72,7 @@ class appstorePage(activeFrame):
 
         self.column_set_sd = button(self.column_footer, 
             callback = self.set_sd, 
-            text_string = "Select Switch SD Root", 
+            text_string = "Select SD Root", 
             font=style.mediumboldtext, 
             background=style.color_2
             ).place(relwidth = 1, relheight = 0.5, y = style.offset, x = style.offset, width = - 2 * style.offset, height = - 2 * style.offset)
@@ -111,6 +111,7 @@ class appstorePage(activeFrame):
         cfw_frame = categoryFrame(self.content_stacking_frame, self.controller, self, self.repo_parser.customfirmwarelist)
         installed_frame = installed_categoryFrame(self.content_stacking_frame, self.controller, self, self.repo_parser.all)
         injector_frame = injector_categoryFrame(self.content_stacking_frame, self.controller, self, self.repo_parser.payloadlist)
+        help_frame = helpFrame(self.content_stacking_frame)
         about_frame = aboutFrame(self.content_stacking_frame)
         readme_frame = readmeFrame(self.content_stacking_frame)
 
@@ -154,8 +155,12 @@ class appstorePage(activeFrame):
             "text" : "RCM Injector"
             },
             {
+            "frame" : help_frame,
+            "text" : "HELP"
+            },
+            {
             "frame" : about_frame,
-            "text" : "About"
+            "text" : "ABOUT"
             },
             {
             "frame" : readme_frame,
@@ -300,3 +305,10 @@ class readmeFrame(textFrame):
         textFrame.__init__(self, frame)
         with open(locations.readme) as readme:
             self.set(readme.read())
+
+#Super basic readme frame, pulls from help.txt
+class helpFrame(textFrame):
+    def __init__(self,frame):
+        textFrame.__init__(self, frame)
+        with open("help.txt") as text:
+            self.set(text.read())
